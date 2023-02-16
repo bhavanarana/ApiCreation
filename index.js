@@ -58,6 +58,22 @@ app.delete("/interns/:id", (req, res) => {
     res.end();
   }
 });
+app.get("/interns/user", (req, res) => {
+  let id = req.query.id;
+  // console.log(id);
+  let index = apiData.findIndex((data) => {
+    console.log(data.id);
+    console.log(id);
+    return data.id == id;
+  });
+  if (index >= 0) {
+    let data = apiData[index];
+    res.send(data);
+  } else {
+    res.status(404);
+    res.end();
+  }
+});
 
 app.listen(port, () => {
   console.log("I am Live again");
